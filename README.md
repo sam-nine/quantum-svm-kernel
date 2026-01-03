@@ -24,4 +24,4 @@ This allows quantum computers to explore exponentially large feature spaces effi
 - **classicTrain.py**: Standard SVM with linear kernel on XOR dataset
 - **quantumTrain.py**: SVM with quantum kernel (ZZFeatureMap) on same data
 
-Quantum kernels leverage superposition and entanglement to explore higher-dimensional feature spaces for non-linear classification.
+Quantum kernels use superposition and entanglement to explore higher dimensional feature spaces for non-linear classification.
