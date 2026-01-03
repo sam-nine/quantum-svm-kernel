@@ -8,24 +8,22 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, confusion_matrix
 
-from qiskit import BasicAer
+from qiskit_aer import AerSimulator
 from qiskit.circuit.library import ZZFeatureMap
-from qiskit.utils import QuantumInstance
-from qiskit_machine_learning.kernels import QuantumKernel
+from qiskit_machine_learning.kernels import FidelityQuantumKernel
+from qiskit.primitives import Sampler
+from qiskit_aer.primitives import Sampler as AerSampler
 
 import logging
-from qiskit_nature import logging as nature_logging
 
 from utils import plot_decision_regions
-
-nature_logging.set_levels_for_names(
-    {"qiskit_nature": logging.DEBUG, "qiskit": logging.DEBUG})
 
 SEED = 19
 
 # Create non-linear Dataset
 np.random.seed(SEED)
-X = np.random.randn(250, 2)
+# X = np.random.randn(250, 2)
+X = np.random.randn(30, 2)
 y = np.logical_xor(X[:, 0] > 0,
                        X[:, 1] > 0)
 y = np.where(y, 1, -1)
@@ -59,17 +57,15 @@ feature_map = ZZFeatureMap(
     entanglement='linear')
 
 # Define the backend
-backend = QuantumInstance(
-    BasicAer.get_backend("qasm_simulator"), 
+backend = AerSimulator(
     shots=N_SHOTS, 
-    seed_simulator=SEED, 
-    seed_transpiler=SEED
+    seed_simulator=SEED
 )
 
 # Define the kernel
-kernel = QuantumKernel(
-    feature_map=feature_map, 
-    quantum_instance=backend)
+kernel = FidelityQuantumKernel(
+    feature_map=feature_map
+)
 
 # QML pipeline
 pipe_qml = Pipeline(
