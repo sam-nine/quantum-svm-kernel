@@ -9,7 +9,6 @@ Kernel functions map data to higher-dimensional spaces:
 
 $$k(\vec{x}_i, \vec{x}_j) = \langle f(\vec{x}_i), f(\vec{x}_j) \rangle$$
 
-As a matrix: $K_{ij} = k(\vec{x}_i, \vec{x}_j)$
 
 ## Quantum Kernels
 
