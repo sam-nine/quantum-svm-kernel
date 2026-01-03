@@ -22,8 +22,7 @@ SEED = 19
 
 # Create non-linear Dataset
 np.random.seed(SEED)
-# X = np.random.randn(250, 2)
-X = np.random.randn(30, 2)
+X = np.random.randn(250, 2)
 y = np.logical_xor(X[:, 0] > 0,
                        X[:, 1] > 0)
 y = np.where(y, 1, -1)
