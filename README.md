@@ -1,6 +1,6 @@
 # QuantumML
 
-A toy example comparing classical and quantum machine learning kernels for binary classification on XOR data.
+Comparing classical and quantum machine learning kernels for binary classification on XOR data.
 
 
 ## Kernel Functions
